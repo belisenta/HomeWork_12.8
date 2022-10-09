@@ -48,6 +48,7 @@ internal class Program
                 break;
 
             case 2:
+                Clear();
                 CreateNewEntry(existingWorkers, repository);
                 existingWorkers = repository.GetAllWorkers();
                 WriteLine("Entry added!");
@@ -55,6 +56,7 @@ internal class Program
                 break;
 
             case 3:
+                Clear();
                 DeleteEntry(existingWorkers, repository);
                 existingWorkers = repository.GetAllWorkers();
                 WriteLine("Entry deleted!");
@@ -62,11 +64,13 @@ internal class Program
                 break;
 
             case 4:
+                Clear();
                 ChooseSortingOfEntriesByParameter(existingWorkers, repository);
                 ReturnToMenu(existingWorkers, repository);
                 break;
 
             case 5:
+                Clear();
                 PrintFilteredEntriesByDateRange(existingWorkers, repository);
                 ReturnToMenu(existingWorkers, repository);
                 break;
@@ -139,42 +143,49 @@ internal class Program
         switch (choise)
         {
             case 1:
+                Clear();
                 orderedEnumerable = existingWorkers.OrderBy(worker => worker.Id);
                 PrintSortedEntries(orderedEnumerable);
                 ReturnToMenu(existingWorkers, repository);
                 break;
 
             case 2:
+                Clear();
                 orderedEnumerable = existingWorkers.OrderBy(worker => worker.Fio);
                 PrintSortedEntries(orderedEnumerable);
                 ReturnToMenu(existingWorkers, repository);
                 break;
 
             case 3:
+                Clear();
                 orderedEnumerable = existingWorkers.OrderBy(worker => worker.Age);
                 PrintSortedEntries(orderedEnumerable);
                 ReturnToMenu(existingWorkers, repository);
                 break;
 
             case 4:
+                Clear();
                 orderedEnumerable = existingWorkers.OrderBy(worker => worker.Height);
                 PrintSortedEntries(orderedEnumerable);
                 ReturnToMenu(existingWorkers, repository);
                 break;
 
             case 5:
+                Clear();
                 orderedEnumerable = existingWorkers.OrderBy(worker => worker.DateOfBirth);
                 PrintSortedEntries(orderedEnumerable);
                 ReturnToMenu(existingWorkers, repository);
                 break;
 
             case 6:
+                Clear();
                 orderedEnumerable = existingWorkers.OrderBy(worker => worker.PlaceOfBirth);
                 PrintSortedEntries(orderedEnumerable);
                 ReturnToMenu(existingWorkers, repository);
                 break;
 
             case 7:
+                Clear();
                 orderedEnumerable = existingWorkers.OrderBy(worker => worker.DateOfEntryCreation);
                 PrintSortedEntries(orderedEnumerable);
                 ReturnToMenu(existingWorkers, repository);
@@ -210,72 +221,5 @@ internal class Program
                 WriteLine(worker.Print());
         else
             WriteLine("No entries available");
-    }
-
-    private static void EditEntries(List<Worker> existingWorkers, Repository repository)
-    {
-        WriteLine("Please, enter ID of entry you wish to edit: ");
-        TryParse(ReadLine(), out int idToEdit);
-
-        Worker workerToEdit = repository.GetWorkerById(idToEdit, existingWorkers);
-
-        WriteLine("Choose parameter to edit:\n\n" +
-                  "(1) FullName\n" +
-                  "(2) Age\n" +
-                  "(3) Height\n" +
-                  "(4) Date of birth\n" +
-                  "(5) Place of birth\n" + 
-                  "\nEnter (1), (2), (3), (4), (5)");
-
-        TryParse(ReadLine(), out int choise);
-
-        switch (choise)
-        {
-            case 1:
-                WriteLine("\nPlease, write new full name: "
-                string newFio = ReadLine() ?? string.Empty;
-                workerToEdit.Fio = newFio;
-                repository.AddWorker(workerToEdit));
-                existingWorkers = repository.GetAllWorkers();
-                break;
-
-            case 2:
-                WriteLine("\nPlease, write new age: "
-                TryParse(ReadLine(), out int newAge);
-                workerToEdit.Age = newAge;
-                repository.AddWorker(workerToEdit));
-                existingWorkers = repository.GetAllWorkers();
-                break;
-
-            case 3:
-                WriteLine("\nPlease, write new height: "
-                TryParse(ReadLine(), out int newHeight);
-                workerToEdit.Height = newHeight;
-                repository.AddWorker(workerToEdit));
-                existingWorkers = repository.GetAllWorkers();
-                break; 
-                
-            case 4:
-                WriteLine("\nPlease, write new date of birth (YYYY.MM.DD): "
-                TryParse(ReadLine(), out DateTime newDateOfBith);
-                workerToEdit.DateOfBirth = newDateOfBith;
-                repository.AddWorker(workerToEdit));
-                existingWorkers = repository.GetAllWorkers();
-                break;
-
-            case 5:
-                WriteLine("\nPlease, write new place of birth: "
-                DateTime newPlaceOfBith = ReadLine() ?? string.Empty;
-                workerToEdit.PlaceOfBirth = newPlaceOfBith;
-                repository.AddWorker(workerToEdit));
-                existingWorkers = repository.GetAllWorkers();
-                break;
-
-            default
-                WriteLine("Uncknown command");
-                ReturnToMenu(existingWorkers, repository);
-                break;
-        }
-
     }
 }
