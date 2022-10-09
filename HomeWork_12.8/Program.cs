@@ -13,7 +13,7 @@ internal class Program
         List<Worker> existingWorkers = repository.GetAllWorkers();
 
         CreateMenu();
-        ChooseOption(existingWorkers, repository);
+        ChooseOptionInMenu(existingWorkers, repository);
     }
 
     private static void CreateMenu()
@@ -32,10 +32,10 @@ internal class Program
         ReadKey();
         Clear();
         CreateMenu();
-        ChooseOption(existingWorkers, repository);
+        ChooseOptionInMenu(existingWorkers, repository);
     }
 
-    private static void ChooseOption(List<Worker> existingWorkers, Repository repository)
+    private static void ChooseOptionInMenu(List<Worker> existingWorkers, Repository repository)
     {
         TryParse(ReadLine(), out int choise);
 
