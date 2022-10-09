@@ -211,4 +211,71 @@ internal class Program
         else
             WriteLine("No entries available");
     }
+
+    private static void EditEntries(List<Worker> existingWorkers, Repository repository)
+    {
+        WriteLine("Please, enter ID of entry you wish to edit: ");
+        TryParse(ReadLine(), out int idToEdit);
+
+        Worker workerToEdit = repository.GetWorkerById(idToEdit, existingWorkers);
+
+        WriteLine("Choose parameter to edit:\n\n" +
+                  "(1) FullName\n" +
+                  "(2) Age\n" +
+                  "(3) Height\n" +
+                  "(4) Date of birth\n" +
+                  "(5) Place of birth\n" + 
+                  "\nEnter (1), (2), (3), (4), (5)");
+
+        TryParse(ReadLine(), out int choise);
+
+        switch (choise)
+        {
+            case 1:
+                WriteLine("\nPlease, write new full name: "
+                string newFio = ReadLine() ?? string.Empty;
+                workerToEdit.Fio = newFio;
+                repository.AddWorker(workerToEdit));
+                existingWorkers = repository.GetAllWorkers();
+                break;
+
+            case 2:
+                WriteLine("\nPlease, write new age: "
+                TryParse(ReadLine(), out int newAge);
+                workerToEdit.Age = newAge;
+                repository.AddWorker(workerToEdit));
+                existingWorkers = repository.GetAllWorkers();
+                break;
+
+            case 3:
+                WriteLine("\nPlease, write new height: "
+                TryParse(ReadLine(), out int newHeight);
+                workerToEdit.Height = newHeight;
+                repository.AddWorker(workerToEdit));
+                existingWorkers = repository.GetAllWorkers();
+                break; 
+                
+            case 4:
+                WriteLine("\nPlease, write new date of birth (YYYY.MM.DD): "
+                TryParse(ReadLine(), out DateTime newDateOfBith);
+                workerToEdit.DateOfBirth = newDateOfBith;
+                repository.AddWorker(workerToEdit));
+                existingWorkers = repository.GetAllWorkers();
+                break;
+
+            case 5:
+                WriteLine("\nPlease, write new place of birth: "
+                DateTime newPlaceOfBith = ReadLine() ?? string.Empty;
+                workerToEdit.PlaceOfBirth = newPlaceOfBith;
+                repository.AddWorker(workerToEdit));
+                existingWorkers = repository.GetAllWorkers();
+                break;
+
+            default
+                WriteLine("Uncknown command");
+                ReturnToMenu(existingWorkers, repository);
+                break;
+        }
+
+    }
 }
