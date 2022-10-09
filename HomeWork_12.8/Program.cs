@@ -37,9 +37,9 @@ internal class Program
 
     private static void ChooseOptionInMenu(List<Worker> existingWorkers, Repository repository)
     {
-        TryParse(ReadLine(), out int choise);
+        TryParse(ReadLine(), out int choice);
 
-        switch (choise)
+        switch (choice)
         {
             case 1:
                 Clear();
@@ -137,10 +137,10 @@ internal class Program
                   "(7) Date of entry creation\n" +
                   "\nEnter (1), (2), (3), (4), (5), (6), (7)");
 
-        TryParse(ReadLine(), out int choise);
+        TryParse(ReadLine(), out int choice);
         IEnumerable<Worker> orderedEnumerable;
 
-        switch (choise)
+        switch (choice)
         {
             case 1:
                 Clear();
