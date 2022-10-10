@@ -29,14 +29,7 @@ internal class Repository
         Worker worker = existingWorkers.FirstOrDefault(worker => worker.Id == id);
         return worker;
     }
-
-    //Метод выводит в консоль все существующие записи
-    public void PrintAllEntries()
-    {
-        foreach (Worker worker in existingWorkers)
-            Console.WriteLine(worker.Print());
-    }
-
+    
     // Метод считывает данные из файла, находит Worker c запрашиваемым ID, записывает в файл все данные, кроме удаляемого
     public void DeleteWorker(int id)
     {

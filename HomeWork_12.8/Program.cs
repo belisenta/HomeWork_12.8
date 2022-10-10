@@ -40,7 +40,8 @@ internal class Program
         {
             case 1:
                 Clear();
-                repository.PrintAllEntries();
+                foreach (Worker worker in repository.existingWorkers)
+                    Console.WriteLine(worker.Print()); ;
                 ReturnToMenu(repository);
                 break;
 
